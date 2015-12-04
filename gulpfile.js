@@ -34,12 +34,12 @@ gulp.task('serve', function() {
 	server.start();
 	console.log('Listening on port: ' + (process.env.PORT || 3000));
 
-	gulp.watch(['www/lib/css/**/*.css', 'www/lib/js/**/*/js', 'www/**/*.html'], function() {
+	gulp.watch(['www/lib/css/**/*.css', 'www/lib/js/**/*/js', 'www/**/*.html'], function(file) {
 		server.notify.apply(server, [file]);
-	}); 
+	});
 
 	gulp.watch('index.js', function() {
-		server.start.bind(server)()
+		server.start.bind(server)();
 	});
 });
 
