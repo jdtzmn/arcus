@@ -1,0 +1,39 @@
+{
+  "name": "arcus",
+  "version": "1.0.0",
+  "description": "A simple notification app for Minecraft.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jdtzmn/arcus.git"
+  },
+  "keywords": [
+    "minecraft",
+    "notify",
+    "alert",
+    "arcus"
+  ],
+  "author": "jdtzmn <jdtzmn@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/jdtzmn/arcus/issues"
+  },
+  "homepage": "https://github.com/jdtzmn/arcus",
+  "dependencies": {
+    "boing": "^1.0.7",
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-live-server": "0.0.29",
+    "gulp-notify": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-uglifycss": "^1.0.5",
+    "jshint": "^2.9.1-rc1",
+    "jshint-stylish": "^2.1.0"
+  }
+}
