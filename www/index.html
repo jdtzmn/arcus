@@ -5,20 +5,31 @@
     <title>Arcus</title>
     <link rel="stylesheet" href="/css/style.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/yeti/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
-    <script src="//cdn.auth0.com/js/lock-7.12.min.js"></script>
+    <script src="//cdn.auth0.com/js/lock-passwordless-1.0.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   </head>
   <body>
 <!-- \/\/\/ Type Here \/\/\/ -->
 
+<!-- Header -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">
+        <div>Arcus</div>
+      </a>
+    </div>
+    <div class="container-fluid navbar-right login hidden"><button class="btn btn-primary navbar-btn" onclick="window.open()">Login</button></div>
+    <div class="container-fluid navbar-right user hidden"><p class="navbar-text navbar-right">Signed in as <span class="navbar-link number"></span>, <a href="#" onclick="window.logout()" class="navbar-link">Logout?</a></p></div>
+  </div>
+</nav>
+<!-- Header -->
+
+<!-- Body -->
 <div class="container">
   <h1 class="text-center">Hello World!</h1>
 </div>
-
-<!-- ... -->
-<input type="submit" class="btn-login" />
-<!-- ... -->
-
+<!-- Body -->
 
 <!-- /\/\/\ Type Here /\/\/\ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
