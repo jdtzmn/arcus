@@ -8,7 +8,7 @@ var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 
 gulp.task('js', function() {
-	return gulp.src('www/lib/js/**/*.js')
+	return gulp.src('www/lib/**/*.js')
 		.pipe(sourcemaps.init())
 			.pipe(jshint())
 			.pipe(jshint.reporter('jshint-stylish'))
@@ -20,10 +20,10 @@ gulp.task('js', function() {
 });
 
 gulp.task('css', function() {
-	return gulp.src('www/lib/css/**/*.js')
+	return gulp.src('www/lib/css/**/*.css')
 		.pipe(sourcemaps.init())
 			.pipe(uglifycss())
-			.pipe(concat('styles.min.js'))
+			.pipe(concat('styles.min.css'))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('./www/dist/css'))
 		.pipe(notify({message: 'CSS has been compiled.', onLast: true}));
@@ -34,7 +34,7 @@ gulp.task('serve', function() {
 	server.start();
 	console.log('Listening on port: ' + (process.env.PORT || 3000));
 
-	gulp.watch(['www/lib/css/**/*.css', 'www/lib/js/**/*/js', 'www/**/*.html'], function(file) {
+	gulp.watch(['www/lib/css/**/*.css', 'www/lib/js/**/*.js', 'www/**/*.html'], function(file) {
 		server.notify.apply(server, [file]);
 	});
 
