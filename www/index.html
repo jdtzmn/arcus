@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Arcus</title>
-    <link rel="stylesheet" href="/css/style.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/css/styles.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/yeti/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src="//cdn.auth0.com/js/lock-passwordless-1.0.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   </head>
@@ -19,15 +20,25 @@
         <div>Arcus</div>
       </a>
     </div>
-    <div class="container-fluid navbar-right login hidden"><button class="btn btn-primary navbar-btn" onclick="window.open()">Login</button></div>
-    <div class="container-fluid navbar-right user hidden"><p class="navbar-text navbar-right">Signed in as <span class="navbar-link number"></span>, <a href="#" onclick="window.logout()" class="navbar-link">Logout?</a></p></div>
+
+    <ul class="nav navbar-nav">
+      <li class="navbar-text"><i class="fa fa-plus-circle"></i>Add Server</li>
+    </ul>
+
+    <div class="container-fluid navbar-right">
+      <span class="user navbar-text"></span>
+      <button type="button" class="btn btn-primary navbar-btn login"><span class="login-span">Login</span></button>
+    </div>
   </div>
 </nav>
 <!-- Header -->
 
 <!-- Body -->
 <div class="container">
-  <h1 class="text-center">Hello World!</h1>
+  <div class="nothing text-center">
+    <h1>Nothing to see here...</h1>
+    <small>Try adding a server</small>
+  </div>
 </div>
 <!-- Body -->
 
