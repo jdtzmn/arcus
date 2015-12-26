@@ -4,16 +4,16 @@ $(document).ready(function() {
      $.ajax({ url: 'https://arcus.auth0.com/userinfo', beforeSend: function(xhr) {
        xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('userToken'));
      }}).done(function( data ) {
-       console.log(data);
        $('.login-span').stop().hide(0).text('Logout').fadeIn();
+       $('.login-span-sm').stop().hide(0).text(', Logout').fadeIn();
        $('.user').stop().hide(0).text('Signed in as: ' + data.phone_number).fadeIn();
-       $('.login').removeClass('btn-primary');
-       $('.login').addClass('btn-default');
+       $('.login').not('.login-sm').removeClass('btn-primary');
+       $('.login').not('.login-sm').addClass('btn-default');
      });
    }
 
   $('.login').click(function() {
-    if ($('.login').text() === 'Logout') {
+    if ($('.login').text() === 'Logout' || $('.login-sm').text() === ', Logout') {
       window.localStorage.removeItem('userToken');
       window.localStorage.removeItem('smsCred');
       window.location.replace('/');

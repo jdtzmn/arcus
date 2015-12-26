@@ -35,7 +35,9 @@ gulp.task('serve', function() {
 	console.log('Listening on port: ' + (process.env.PORT || 3000));
 
 	gulp.watch(['www/lib/css/**/*.css', 'www/lib/js/**/*.js', 'www/**/*.html'], function(file) {
-		server.notify.apply(server, [file]);
+		setTimeout(function() {
+			server.notify.apply(server, [file]);
+		}, 100);
 	});
 
 	gulp.watch('index.js', function() {
