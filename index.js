@@ -2,10 +2,11 @@ var express = require('express');
 var request = require('request');
 var app = express();
 var db = require('orchestrate')('40fa0088-fc60-4d68-a02a-2808efe8d9a5');
+var client = require('twilio')('ACc7a81da7cc0f53ab18ec67225e8923da','5c13c3b32e5211e021d9fdcfb0196438');
 
 app.use(express.static(__dirname + '/www/dist'));
 
-function checkID(req, cb) {
+function checkID(req, cb, number) {
 	var userToken = req.headers.authorization;
 	request({
 		headers: {
@@ -14,7 +15,11 @@ function checkID(req, cb) {
 		url: 'https://arcus.auth0.com/userinfo'
 	}, function (error, response, body) {
 	  if (!error && response.statusCode == 200) {
-	    cb(true, JSON.parse(body).user_id);
+			if (!number) {
+				cb(true, JSON.parse(body).user_id);
+			} else {
+				cb(true, JSON.parse(body).user_id, JSON.parse(body).phone_number);
+			}
 	  } else {
 			cb(false);
 		}
@@ -157,6 +162,46 @@ app.get('/api/update', function(req, res) {
 		}
 	});
 });
+
+
+
+//Twilio text api:
+
+app.get('/api/notify', function(req, res) {
+	if (!req.headers.authorization || !req.query.msg) {
+		res.status('422').send({success: false, statusCode: 422, body: 'Missing either authorization or msg query.'});
+		return;
+	}
+
+	checkID(req, function(verified, id, number) {
+
+		console.log(number);
+
+		//send text:
+		client.messages.create({
+		  body: req.query.msg,
+		  to: number,
+		  from: "+19095527287"
+		}, function(err, message) {
+		  if (err) {
+				client.messages.create({
+				  body: err,
+				  to: "+17816907045",
+				  from: "+19095527287"
+				}, function(err, message) {
+				  if (err) {
+						console.log(err);
+						res.send({success: false, statusCode: 520, body: err});
+					}
+				});
+			} else {
+				res.send({success: true});
+			}
+		});
+
+	}, true);
+});
+
 
 ///\/\/\ Edit Here: /\/\/\
 

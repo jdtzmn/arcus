@@ -45,10 +45,15 @@ $(document).ready(function() {
         }, 1000);
       } else if ($('.popover').find('#ip').val() !== '' && $('.popover').find('#name').val() !== ''){
         servers.add($('.popover').find('#name').val(),$('.popover').find('#ip').val());
-        $('.add').popover('hide');
+        $(this).parents('.popover').popover('hide');
         $('.navbar-collapse').collapse('hide');
         servers.render();
       }
+      return false;
+    });
+
+    $('.add-server').mouseup(function(e) {
+      e.preventDefault();
       return false;
     });
 
@@ -57,18 +62,72 @@ $(document).ready(function() {
     });
   });
 
-  $('.remove').click(function() {
+  $('.remove').click(function(e) {
     $(this).blur();
-    $('.cancel').animate({ width: 'hide' }).delay(100).animate({ width: 'show' });
+    $('.cancel').animate({ width: 'toggle' });
+    e.stopPropagation();
   });
 
-  $(':not(.remove)').click(function() {
+  $(document).click(function() {
     $('.cancel:visible').animate({ width: 'hide' });
   });
 
-  $('.delete').click(function() {
+  $('.delete').click(function(e) {
     servers.remove($('tbody > tr').index($(this).parents('tr')));
     servers.render();
+    e.stopPropagation();
+  });
+
+  var keysdown = {},
+        number = '';
+
+  $(document).keydown(function(e) {
+
+    //makes sure the keydown event fires only once:
+    if (keysdown[String.fromCharCode(e.keyCode)]) {
+      return;
+    }
+    keysdown[String.fromCharCode(e.keyCode)] = true;
+
+
+    if (e.keyCode === 27) {
+      $('.cancel:visible').animate({
+        width: 'hide'
+      });
+
+      $('.cancel-popover:visible').parents('.popover').popover('hide');
+    }
+
+    //chcking for number after r
+    if (keysdown.R && !isNaN(String.fromCharCode(e.keyCode)) && !$('input').is(':focus')) {
+      number += String.fromCharCode(e.keyCode);
+    }
+
+    //adding shortcut for .add
+    if (e.keyCode === 78 && !$('input').is(':focus')) {
+      $('.add').click();
+      e.preventDefault();
+    }
+
+  });
+
+  $(document).keyup(function(e) {
+
+    if (String.fromCharCode(e.keyCode) === 'R' && number !== '' && !$('input').is(':focus')) {
+      servers.remove(+number - 1);
+      servers.render();
+      number = '';
+      return;
+    }
+
+    //adding shortcut for .cancel;
+    if (e.keyCode === 82 && !$('input').is(':focus')) {
+      $('.cancel').animate({ width: 'toggle' });
+    }
+
+    //sets the keys which were down to being up:
+    keysdown[String.fromCharCode(e.keyCode)] = false;
+
   });
 
   $('.navbar-collapse .remove, .login-sm').click('li', function() {

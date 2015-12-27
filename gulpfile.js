@@ -6,6 +6,7 @@ var uglifycss = require('gulp-uglifycss');
 var sourcemaps = require('gulp-sourcemaps');
 var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
+var uncss = require('gulp-uncss');
 
 gulp.task('js', function() {
 	return gulp.src('www/lib/**/*.js')
@@ -24,6 +25,9 @@ gulp.task('css', function() {
 		.pipe(sourcemaps.init())
 			.pipe(uglifycss())
 			.pipe(concat('styles.min.css'))
+			.pipe(uncss({
+				html: ['www/index.html']
+			}))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('./www/dist/css'))
 		.pipe(notify({message: 'CSS has been compiled.', onLast: true}));
