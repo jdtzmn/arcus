@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var notify = require('gulp-notify');
 var gls = require('gulp-live-server');
 var uglify = require('gulp-uglify');
-var include = require('gulp-include');
 var uglifycss = require('gulp-uglifycss');
 var sourcemaps = require('gulp-sourcemaps');
 var jshint = require('gulp-jshint');
@@ -10,9 +9,10 @@ var concat = require('gulp-concat');
 var uncss = require('gulp-uncss');
 
 gulp.task('js', function() {
-	return gulp.src('www/lib/*.js')
+	return gulp.src('www/lib/js/*.js')
 		.pipe(sourcemaps.init())
-			.pipe(include())
+			.pipe(jshint())
+			.pipe(jshint.reporter('jshint-stylish'))
 			.pipe(concat('scripts.min.js'))
 			.pipe(uglify())
 		.pipe(sourcemaps.write('.'))
@@ -23,8 +23,8 @@ gulp.task('js', function() {
 gulp.task('css', function() {
 	return gulp.src('www/lib/css/*.css')
 		.pipe(sourcemaps.init())
-			.pipe(uglifycss())
 			.pipe(concat('styles.min.css'))
+			.pipe(uglifycss())
 			.pipe(uncss({
 				html: ['www/index.html']
 			}))
