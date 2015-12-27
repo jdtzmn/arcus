@@ -27,6 +27,7 @@
     "express": "^4.13.3",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
+    "gulp-include": "^2.1.0",
     "gulp-jshint": "^2.0.0",
     "gulp-live-server": "0.0.29",
     "gulp-notify": "^2.2.0",
