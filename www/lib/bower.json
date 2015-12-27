@@ -1,6 +1,10 @@
 {
   "name": "arcus",
   "dependencies": {
-    "bootstrap": "~3.3.6"
+    "bootstrap": "~3.3.6",
+    "transparency": "~0.11.0",
+    "auth0-lock-passwordless": "~2.0.1",
+    "pnotify": "~3.0.0",
+    "jquery": "~2.1.4"
   }
 }
