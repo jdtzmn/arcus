@@ -36,7 +36,7 @@
     "gulp-uncss": "^1.0.4",
     "jshint": "^2.9.1-rc1",
     "jshint-stylish": "^2.1.0",
-    "orchestrate": "^0.6.0",
+    "orchestrate": "^0.7.0",
     "twilio": "^2.8.0"
   }
 }
