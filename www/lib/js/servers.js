@@ -83,7 +83,14 @@ var servers = {
     PNotify.prototype.options.styling = "fontawesome";
     PNotify.desktop.permission();
     if (validToken) {
-      $.ajax({ url: '/api/notify?msg=' + message, beforeSend: function(xhr) {
+      var currentdate = new Date();
+      var datetime = "[" + (currentdate.getMonth()+1) + "/" +
+      currentdate.getDate() + "/" +
+      currentdate.getFullYear() + " @ " +
+      currentdate.getHours() + ":" +
+      currentdate.getMinutes() + ":" +
+      currentdate.getSeconds() + "]%0a ";
+      $.ajax({ url: '/api/notify?msg=' + datetime + message, beforeSend: function(xhr) {
         xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('userToken'));
       }}).done(function( data ) {
         new PNotify({
@@ -95,9 +102,6 @@ var servers = {
           desktop: {
             desktop: true,
             icon: false
-          },
-          nonblock: {
-            nonblock: true
           },
           mobile: {
             swipe_dismiss: true,
@@ -115,9 +119,6 @@ var servers = {
         desktop: {
           desktop: true,
           icon: false
-        },
-        nonblock: {
-          nonblock: true
         },
         mobile: {
           swipe_dismiss: true,
