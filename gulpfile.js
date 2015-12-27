@@ -9,11 +9,10 @@ var concat = require('gulp-concat');
 var uncss = require('gulp-uncss');
 
 gulp.task('js', function() {
-	gulp.src('www/lib/js/*.js')
-		.pipe(jshint())
-		.pipe(jshint.reporter('jshint-stylish'));
-	gulp.src('www/lib/js/scripts.js')
+	return gulp.src('www/lib/*.js')
 		.pipe(sourcemaps.init())
+			.pipe(jshint())
+			.pipe(jshint.reporter('jshint-stylish'))
 			.pipe(uglify())
 			.pipe(concat('scripts.min.js'))
 		.pipe(sourcemaps.write('.'))
@@ -22,7 +21,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('css', function() {
-	return gulp.src('www/lib/css/libraries.css')
+	return gulp.src('www/lib/css/*.css')
 		.pipe(sourcemaps.init())
 			.pipe(uglifycss())
 			.pipe(concat('styles.min.css'))
@@ -39,7 +38,7 @@ gulp.task('serve', function() {
 	server.start();
 	console.log('Listening on port: ' + (process.env.PORT || 3000));
 
-	gulp.watch(['www/lib/css/*.css', 'www/lib/js/*.js', 'www/**/*.html'], function(file) {
+	gulp.watch(['www/lib/css/**/*.css', 'www/lib/js/**/*.js', 'www/**/*.html'], function(file) {
 		setTimeout(function() {
 			server.notify.apply(server, [file]);
 		}, 100);
@@ -53,8 +52,8 @@ gulp.task('serve', function() {
 gulp.task('watch', function() {
 	gulp.start(['js']);
 	gulp.start(['css']);
-	gulp.watch('www/lib/js/*.js', ['js']);
-	gulp.watch('www/lib/css/*.css', ['css']);
+	gulp.watch('www/lib/js/**/*.js', ['js']);
+	gulp.watch('www/lib/css/**/*.css', ['css']);
 });
 
 gulp.task('default', function() {
