@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var notify = require('gulp-notify');
 var gls = require('gulp-live-server');
 var uglify = require('gulp-uglify');
+var include = require('gulp-include');
 var uglifycss = require('gulp-uglifycss');
 var sourcemaps = require('gulp-sourcemaps');
 var jshint = require('gulp-jshint');
@@ -11,10 +12,9 @@ var uncss = require('gulp-uncss');
 gulp.task('js', function() {
 	return gulp.src('www/lib/*.js')
 		.pipe(sourcemaps.init())
-			.pipe(jshint())
-			.pipe(jshint.reporter('jshint-stylish'))
-			.pipe(uglify())
+			.pipe(include())
 			.pipe(concat('scripts.min.js'))
+			.pipe(uglify())
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('./www/dist/js'))
 		.pipe(notify({message: 'JS has been compiled.', onLast: true}));
