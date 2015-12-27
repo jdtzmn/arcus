@@ -9,7 +9,7 @@ var concat = require('gulp-concat');
 var uncss = require('gulp-uncss');
 
 gulp.task('js', function() {
-	return gulp.src('www/lib/**/*.js')
+	return gulp.src('www/lib/*.js')
 		.pipe(sourcemaps.init())
 			.pipe(jshint())
 			.pipe(jshint.reporter('jshint-stylish'))
@@ -21,7 +21,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('css', function() {
-	return gulp.src('www/lib/css/**/*.css')
+	return gulp.src('www/lib/css/*.css')
 		.pipe(sourcemaps.init())
 			.pipe(uglifycss())
 			.pipe(concat('styles.min.css'))
