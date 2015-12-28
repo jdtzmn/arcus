@@ -6,7 +6,6 @@ var uglifycss = require('gulp-uglifycss');
 var sourcemaps = require('gulp-sourcemaps');
 var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
-var uncss = require('gulp-uncss');
 var merge = require('merge-stream');
 var lib = require('bower-files')({
 	cwd: __dirname + '/www/lib',
@@ -53,17 +52,6 @@ gulp.task('css', function() {
 		.pipe(sourcemaps.init())
 			.pipe(concat('styles.min.css'))
 			.pipe(uglifycss())
-			.pipe(uncss({
-				html: ['www/index.html'],
-				ignore: [
-					'.popover',
-					'.popover-content',
-					'.arrow',
-					'.popover.bottom',
-					'.fade.in',
-					'.fade'
-				]
-			}))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('./www/dist/css'))
 		.pipe(notify({message: 'CSS has been compiled.', onLast: true}));
