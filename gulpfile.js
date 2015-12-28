@@ -12,6 +12,7 @@ var lib = require('bower-files')({
 });
 
 console.log(lib.ext('js').files);
+console.log(lib.ext('css').files);
 
 gulp.task('js', function() {
 	return gulp.src('www/lib/js/*.js')
