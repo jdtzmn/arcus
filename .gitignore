@@ -95,3 +95,10 @@ $RECYCLE.BIN/
 
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
+
+### Custom ###
+./www/dist/js/scripts.min.js
+./www/dist/js/scripts.min.js.map
+./www/dist/css/scripts.min.css
+./www/dist/css/scripts.min.css.map
+./www/dist
