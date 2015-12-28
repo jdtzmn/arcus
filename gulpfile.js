@@ -31,13 +31,13 @@ var lib = require('bower-files')({
 		'font-awesome': {
 			main: './css/font-awesome.css',
 			dependencies: {}
+		},
+		'auth0-lock-passwordless': {
+			main: './build/lock-passwordless.js',
+			dependencies: {}
 		}
 	}
 });
-
-console.log(lib.ext('js').files);
-console.log('');
-console.log(lib.ext('css').files);
 
 gulp.task('js', function() {
 	var files = gulp.src('www/lib/js/*.js')
