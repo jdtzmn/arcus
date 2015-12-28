@@ -97,8 +97,4 @@ $RECYCLE.BIN/
 .Trash-*
 
 ### Custom ###
-www/dist/js/scripts.min.js
-www/dist/js/scripts.min.js.map
-www/dist/css/scripts.min.css
-www/dist/css/scripts.min.css.map
 www/dist
