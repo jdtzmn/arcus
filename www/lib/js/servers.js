@@ -44,6 +44,7 @@ var servers = {
     }
   },
   render: function() {
+    PNotify.removeAll();
     if (servers.get().length > 0) {
       $('.nothing').hide();
       $('.data').fadeIn();
