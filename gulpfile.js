@@ -32,9 +32,6 @@ var lib = require('bower-files')({
 	}
 });
 
-console.log(lib.ext('js').files);
-console.log(lib.ext('css').files);
-
 gulp.task('js', function() {
 	var files = gulp.src('www/lib/js/*.js')
 		.pipe(jshint())
@@ -57,7 +54,15 @@ gulp.task('css', function() {
 			.pipe(concat('styles.min.css'))
 			.pipe(uglifycss())
 			.pipe(uncss({
-				html: ['www/index.html']
+				html: ['www/index.html'],
+				ignore: [
+					'.popover',
+					'.popover-content',
+					'.arrow',
+					'.popover.bottom',
+					'.fade.in',
+					'.fade'
+				]
 			}))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('./www/dist/css'))

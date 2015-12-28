@@ -19,6 +19,12 @@
   outline: none !important;
 }
 
+@media (max-width:767px) {
+  .popover {
+    background: white;
+  }
+}
+
 .fa-bars {
   color: #fff;
 }
@@ -573,6 +579,17 @@ label {
   width: 100%;
 }
 
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity .15s linear;
+  -o-transition: opacity .15s linear;
+  transition: opacity .15s linear;
+}
+
+.fade.in {
+  opacity: 1;
+}
+
 .collapse {
   display: none;
 }
@@ -794,6 +811,48 @@ label {
   border-color: #222;
 }
 
+.popover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1060;
+  display: none;
+  max-width: 276px;
+  padding: 1px;
+  font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-break: auto;
+  line-height: 1.4;
+  text-align: left;
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  white-space: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+  font-size: 15px;
+  background-color: #333;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #333;
+  border: 1px solid transparent;
+  border-radius: 0;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.popover.bottom {
+  margin-top: 10px;
+}
+
+.popover-content {
+  padding: 9px 14px;
+}
+
 .container:before,
 .container:after,
 .container-fluid:before,
@@ -883,6 +942,12 @@ label,
 .control-label {
   font-size: 12px;
   font-weight: normal;
+}
+
+.popover {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 300;
 }
 
 /*!
