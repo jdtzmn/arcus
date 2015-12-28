@@ -32,6 +32,9 @@ var lib = require('bower-files')({
 	}
 });
 
+console.log(lib.ext('js').files);
+console.log(lib.ext('css').files);
+
 gulp.task('js', function() {
 	var files = gulp.src('www/lib/js/*.js')
 		.pipe(jshint())
@@ -47,7 +50,9 @@ gulp.task('js', function() {
 });
 
 gulp.task('css', function() {
-	gulp.src('www/lib/css/*.css')
+	var files = gulp.src('www/lib/css/*.css');
+	var bowerfiles = gulp.src(lib.ext('css').files);
+	return merge(bowerfiles, files)
 		.pipe(sourcemaps.init())
 			.pipe(concat('styles.min.css'))
 			.pipe(uglifycss())
