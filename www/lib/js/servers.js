@@ -47,6 +47,7 @@ var servers = {
     if (servers.get().length > 0) {
       $('.nothing').hide();
       $('.data').fadeIn();
+      var shown = $('.cancel:hidden').length < $('.cancel:visible').length;
       $('.servers').hide().render(servers.get(), {
         cancel: {
           style: function() {
@@ -54,9 +55,15 @@ var servers = {
           }
         }
       }).fadeIn();
+      if (shown === true) {
+        $('.cancel').animate({ width: 'show' });
+      } else {
+        $('.cancel').animate({ width: 'hide' });
+      }
     } else if (servers.get().length === 0) {
       $('.data').hide();
       $('.nothing').fadeIn();
+      $('.cancel').animate({ width: 'hide' });
     }
     servers.watch();
   },
