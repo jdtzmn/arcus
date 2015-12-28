@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var notify = require('gulp-notify');
 var gls = require('gulp-live-server');
 var uglify = require('gulp-uglify');
 var uglifycss = require('gulp-uglifycss');
@@ -49,8 +48,7 @@ gulp.task('js', function() {
 			.pipe(concat('scripts.min.js'))
 			.pipe(uglify())
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('./www/dist/js'))
-		.pipe(notify({message: 'JS has been compiled.', onLast: true}));
+		.pipe(gulp.dest('./www/dist/js'));
 });
 
 gulp.task('css', function() {
@@ -61,8 +59,7 @@ gulp.task('css', function() {
 			.pipe(concat('styles.min.css'))
 			.pipe(uglifycss())
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('./www/dist/css'))
-		.pipe(notify({message: 'CSS has been compiled.', onLast: true}));
+		.pipe(gulp.dest('./www/dist/css'));
 });
 
 gulp.task('serve', function() {
