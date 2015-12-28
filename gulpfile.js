@@ -7,18 +7,38 @@ var sourcemaps = require('gulp-sourcemaps');
 var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var uncss = require('gulp-uncss');
+var merge = require('merge-stream');
 var lib = require('bower-files')({
-	cwd: __dirname + '/www/lib'
+	cwd: __dirname + '/www/lib',
+	overrides: {
+		bootswatch: {
+			main: './yeti/bootstrap.css',
+			dependencies: {
+				"bootstrap": "~3.3.6"
+			}
+		},
+		pnotify: {
+			main: [
+				'./dist/pnotify.js',
+				'./dist/pnotify.desktop.js',
+				'./dist/pnotify.mobile.js',
+				'./dist/pnotify.css',
+				'./dist/pnotify.mobile.css'
+			],
+			dependencies: {
+				"jquery": ">=1.6"
+			}
+		}
+	}
 });
 
-console.log(lib.ext('js').files);
-console.log(lib.ext('css').files);
-
 gulp.task('js', function() {
-	return gulp.src('www/lib/js/*.js')
+	var files = gulp.src('www/lib/js/*.js')
+		.pipe(jshint())
+		.pipe(jshint.reporter('jshint-stylish'));
+	var bowerfiles = gulp.src(lib.ext('js').files);
+	return merge(bowerfiles, files)
 		.pipe(sourcemaps.init())
-			.pipe(jshint())
-			.pipe(jshint.reporter('jshint-stylish'))
 			.pipe(concat('scripts.min.js'))
 			.pipe(uglify())
 		.pipe(sourcemaps.write('.'))
@@ -27,7 +47,7 @@ gulp.task('js', function() {
 });
 
 gulp.task('css', function() {
-	return gulp.src('www/lib/css/*.css')
+	gulp.src('www/lib/css/*.css')
 		.pipe(sourcemaps.init())
 			.pipe(concat('styles.min.css'))
 			.pipe(uglifycss())
