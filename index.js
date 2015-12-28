@@ -32,10 +32,6 @@ app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/www/index.html');
 });
 
-app.get('/fonts/:file', function(req, res) {
-	res.sendFile(__dirname + '/www/lib/bower_components/font-awesome/fonts/' + req.params.file);
-});
-
 app.get('/api/get', function(req, res) {
 	if (!req.headers.authorization) {
 		res.status('422').send({success: false, statusCode: 422, body: 'Missing authorization.'});
