@@ -24,6 +24,7 @@
   "homepage": "https://github.com/jdtzmn/arcus",
   "dependencies": {
     "boing": "^1.0.7",
+    "bower-files": "^3.11.3",
     "express": "^4.13.3",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",

@@ -7,6 +7,11 @@ var sourcemaps = require('gulp-sourcemaps');
 var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var uncss = require('gulp-uncss');
+var lib = require('bower-files')({
+	cwd: __dirname + '/www/lib'
+});
+
+console.log(lib.ext('js').files);
 
 gulp.task('js', function() {
 	return gulp.src('www/lib/js/*.js')
