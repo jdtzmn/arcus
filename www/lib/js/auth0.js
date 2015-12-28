@@ -88,10 +88,7 @@ $(document).ready(function() {
 
     lock = new Auth0LockPasswordless('qB53zH4XKon2YWheT9dXixXjyvEoy0Sq', 'arcus.auth0.com');
     lock.sms({
-      callbackURL: '',
-      authParams: {
-        scope: 'openid profile'
-      },
+      icon: '',
       autoclose: true
     }, function(err, profile, id_token, access_token, state, refresh_token) {
       if (!err) {

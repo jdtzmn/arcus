@@ -64,7 +64,13 @@ $(document).ready(function() {
 
   $('.remove').click(function(e) {
     $(this).blur();
-    $('.cancel').animate({ width: 'toggle' });
+
+    //quick function to synchronise the messed-up cancel buttons:
+    if ($('.cancel:hidden').length >= $('.cancel:visible').length && servers.get().length > 0) {
+      $('.cancel').animate({ width: 'show' });
+    } else if (servers.get().length > 0) {
+      $('.cancel').animate({ width: 'hide' });
+    }
     e.stopPropagation();
   });
 
@@ -122,7 +128,7 @@ $(document).ready(function() {
 
     //adding shortcut for .cancel;
     if (e.keyCode === 82 && !$('input').is(':focus')) {
-      $('.cancel').animate({ width: 'toggle' });
+      $('.remove').click();
     }
 
     //sets the keys which were down to being up:

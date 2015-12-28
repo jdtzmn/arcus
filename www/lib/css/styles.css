@@ -61,4 +61,5 @@ td:not(.cancel) {
 
 .delete {
   height: 47px;
+  outline: none !important;
 }
