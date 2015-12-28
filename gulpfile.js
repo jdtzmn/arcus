@@ -27,9 +27,17 @@ var lib = require('bower-files')({
 			dependencies: {
 				"jquery": ">=1.6"
 			}
+		},
+		'font-awesome': {
+			main: './css/font-awesome.css',
+			dependencies: {}
 		}
 	}
 });
+
+console.log(lib.ext('js').files);
+console.log('');
+console.log(lib.ext('css').files);
 
 gulp.task('js', function() {
 	var files = gulp.src('www/lib/js/*.js')
