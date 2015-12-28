@@ -37,6 +37,7 @@
     "jshint-stylish": "^2.1.0",
     "merge-stream": "^1.0.0",
     "orchestrate": "^0.7.0",
+    "request": "^2.67.0",
     "twilio": "^2.8.0"
   }
 }
