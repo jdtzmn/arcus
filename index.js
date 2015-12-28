@@ -179,8 +179,6 @@ app.get('/api/notify', function(req, res) {
 
 	checkID(req, function(verified, id, number) {
 
-		console.log(number);
-
 		//send text:
 		client.messages.create({
 		  body: req.query.msg,
