@@ -190,7 +190,7 @@ app.get('/api/notify', function(req, res) {
 					client.messages.create({
 					  body: req.query.msg,
 					  to: number,
-					  from: "Arcus"
+					  from: "+19095527287"
 					}, function(err, message) {
 						if (err) {
 							console.log(err);
